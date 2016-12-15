@@ -58,6 +58,7 @@ AppAsset::register($this);
     </div>
     <div class="col-sm-10 col-sm-offset-2 col-md-10  col-md-offset-2 col-lg-10 col-lg-offset-2">
         内容区域
+        <?//=$content;?>
         <hr/>
         <footer>
             <p class="pull-left">@编程浪子郭威</p>

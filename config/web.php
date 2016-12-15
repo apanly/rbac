@@ -42,6 +42,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+            	//'/' => 'default/index' //默认访问页面route规则
             ],
         ]
     ],
@@ -58,6 +59,7 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+		//'allowedIPs' => [ '127.0.0.1','192.168.*.*' ] //配置允许访问辅助工具的ip
     ];
 }
 
