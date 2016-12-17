@@ -59,7 +59,7 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-		//'allowedIPs' => [ '127.0.0.1','192.168.*.*' ] //配置允许访问辅助工具的ip
+		'allowedIPs' => [ '127.0.0.1','192.168.*.*' ] //配置允许访问辅助工具的ip
     ];
 }
 
