@@ -54,7 +54,7 @@ AppAsset::register($this);
             <li><a href="<?=UrlService::buildUrl("/test/page4");?>">测试页面四</a></li>
             <li>系统设置</li>
             <li><a href="javascript:void(0);">用户管理</a></li>
-            <li><a href="javascript:void(0);">角色管理</a></li>
+            <li><a href="<?=UrlService::buildUrl("/role/index");?>">角色管理</a></li>
             <li><a href="javascript:void(0);">权限管理</a></li>
         </ul>
     </div>

@@ -97,7 +97,7 @@ class BaseController extends  Controller{
 	 * msg: 此次操作简单提示信息
 	 * code: 状态码 200 表示成功，http 请求成功 状态码也是200
 	 */
-	protected function renderJSON($data=[], $msg ="ok", $code = 200){
+	public function renderJSON($data=[], $msg ="ok", $code = 200){
 		header('Content-type: application/json');//设置头部内容格式
 		echo json_encode([
 			"code" => $code,

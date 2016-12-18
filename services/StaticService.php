@@ -7,6 +7,7 @@ class StaticService{
 
 	/*使用yii 统一方法加载js或者css*/
     public static function includeAppStatic($type, $path, $depend){
+    	//版本号就是为了解决浏览器缓存的
         $release_version = defined("RELEASE_VERSION") ? RELEASE_VERSION : "20150731141600";
         if (stripos($path, "?") !== false) {
             $path = $path . "&version={$release_version}";
