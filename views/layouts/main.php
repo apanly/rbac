@@ -8,7 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-
+use \app\services\UrlService;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -36,7 +36,9 @@ AppAsset::register($this);
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">首页</a></li>
             </ul>
-            <p class="navbar-text navbar-right">Hi,xxxxxx</p>
+            <?php if( isset( $this->params['current_user']) ):?>
+            <p class="navbar-text navbar-right">Hi,<?=$this->params['current_user']['name'];?></p>
+            <?php endif;?>
         </div>
     </div>
 </nav>
@@ -46,7 +48,7 @@ AppAsset::register($this);
     <div class="col-sm-2 col-md-2 col-lg-2 sidebar">
         <ul class="nav nav-sidebar">
             <li>权限演示页面</li>
-            <li><a href="javascript:void(0);">测试页面一</a></li>
+            <li><a href="<?=UrlService::buildUrl("/test/page1");?>">测试页面一</a></li>
             <li><a href="javascript:void(0);">测试页面二</a></li>
             <li><a href="javascript:void(0);">测试页面三</a></li>
             <li><a href="javascript:void(0);">测试页面四</a></li>
@@ -56,7 +58,7 @@ AppAsset::register($this);
             <li><a href="javascript:void(0);">权限管理</a></li>
         </ul>
     </div>
-    <div class="col-sm-10 col-sm-offset-2 col-md-10  col-md-offset-2 col-lg-10 col-lg-offset-2">
+    <div class="col-sm-10 col-sm-offset-2 col-md-10  col-md-offset-2 col-lg-10 col-lg-offset-2 main">
         <?=$content;?>
         <hr/>
         <footer>

@@ -11,6 +11,11 @@ use app\models\User;
 use app\services\UrlService;
 
 class UserController extends  BaseController{
+	//用户登录页面
+	public function actionLogin(){
+		return $this->render("login");
+	}
+
 	//伪登录业务方法,所以伪登录功能也是需要有auth_token
 	public function actionVlogin(){
 		$uid = $this->get("uid",0);
@@ -23,12 +28,7 @@ class UserController extends  BaseController{
 			return $this->redirect( $reback_url );
 		}
 		//cookie保存用户的登录态,所以cookie值需要加密，规则：user_auth_token + "#" + uid
-		$user_auth_token = md5( $user_info['id'].$user_info['name'].$user_info['email'].$_SERVER['HTTP_USER_AGENT'] );
-		$cookie_target = \Yii::$app->response->cookies;
-		$cookie_target->add( new \yii\web\Cookie( [
-			"name" => "imguowei_888",
-			"value" => $user_auth_token."#".$user_info['id']
-		] ) );
+		$this->createLoginStatus( $user_info );
 		return $this->redirect( $reback_url );
 	}
 }

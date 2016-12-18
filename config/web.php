@@ -42,7 +42,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-            	//'/' => 'default/index' //默认访问页面route规则
+            	'/' => 'default/index' //默认访问页面route规则
             ],
         ]
     ],
