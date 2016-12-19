@@ -53,7 +53,7 @@ AppAsset::register($this);
             <li><a href="<?=UrlService::buildUrl("/test/page3");?>">测试页面三</a></li>
             <li><a href="<?=UrlService::buildUrl("/test/page4");?>">测试页面四</a></li>
             <li>系统设置</li>
-            <li><a href="javascript:void(0);">用户管理</a></li>
+            <li><a href="<?=UrlService::buildUrl("/user/index");?>">用户管理</a></li>
             <li><a href="<?=UrlService::buildUrl("/role/index");?>">角色管理</a></li>
             <li><a href="javascript:void(0);">权限管理</a></li>
         </ul>
