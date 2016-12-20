@@ -23,6 +23,14 @@ var user_set_ops = {
                 return false;
             }
 
+            //将选中的角色id传递到后端
+            var role_ids = [];
+            $(".user_set_wrap input[name='role_ids[]']").each( function(){
+                if( $(this).prop("checked") ){
+                    role_ids.push( $(this).val() );
+                }
+            });
+
             btn_target.addClass("disabled");
             $.ajax({
                 url:'/user/set',
@@ -30,7 +38,8 @@ var user_set_ops = {
                 data:{
                     id:$(".user_set_wrap input[name='id']").val(),
                     name:name,
-                    email:email
+                    email:email,
+                    role_ids:role_ids
                 },
                 dataType:'json',
                 success:function( res ){
