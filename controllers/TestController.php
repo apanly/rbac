@@ -24,4 +24,8 @@ class TestController extends  BaseController {
 	public function actionPage4(){
 		return $this->render("page4");
 	}
+
+	public function actionPage5(){
+		return $this->render("page5");
+	}
 }

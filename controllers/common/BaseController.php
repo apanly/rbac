@@ -6,7 +6,10 @@
 namespace app\controllers\common;
 
 
+use app\models\Access;
+use app\models\RoleAccess;
 use app\models\User;
+use app\models\UserRole;
 use app\services\UrlService;
 use yii\web\Controller;
 use Yii;
@@ -20,6 +23,12 @@ class BaseController extends  Controller{
 		'user/vlogin'
 	];
 
+	public $ignore_url = [
+		'error/forbidden' ,
+		'user/vlogin',
+		'user/login'
+	];
+
 	//本系统所有页面都是需要登录之后才能访问的，  在框架中加入统一验证方法
 	public function beforeAction($action) {
 		$login_status = $this->checkLoginStatus();
@@ -31,7 +40,56 @@ class BaseController extends  Controller{
 			}
 			return false;
 		}
+		/**
+		 * 判断权限的逻辑是
+		 * 取出当前登录用户的所属角色，
+		 * 在通过角色 取出 所属 权限关系
+		 * 在权限表中取出所有的权限链接
+		 * 判断当前访问的链接 是否在 所拥有的权限列表中
+		 */
+		$privilege_urls = $this->getRolePrivilege(  );
+		//有一些页面是不需要进行权限判断的
+		if( in_array( $action->getUniqueId(),$this->ignore_url ) ){
+			return true;
+		}
+		//如果是超级管理员 也不需要权限判断
+		if( $this->current_user && $this->current_user['is_admin'] ){
+			return true;
+		}
+		//判断当前访问的链接 是否在 所拥有的权限列表中
+		if( !in_array( $action->getUniqueId(), $privilege_urls) ){
+			$this->redirect( UrlService::buildUrl( "/error/forbidden" ) );
+			return false;
+		}
 		return true;
+	}
+
+	/*
+	* 获取某用户的所有权限
+	* 取出指定用户的所属角色，
+	* 在通过角色 取出 所属 权限关系
+	* 在权限表中取出所有的权限链接
+	*/
+	public function getRolePrivilege($uid = 0){
+		if( !$uid && $this->current_user ){
+			$uid = $this->current_user->id;
+		}
+		$privilege_urls = [];
+		//取出指定用户的所属角色
+		$role_ids = UserRole::find()->where([ 'uid' => $uid ])->select('role_id')->asArray()->column();
+		if( $role_ids ){
+			//在通过角色 取出 所属 权限关系
+			$access_ids = RoleAccess::find()->where([ 'role_id' =>  $role_ids ])->select('access_id')->asArray()->column();
+			//在权限表中取出所有的权限链接
+			$list = Access::find()->where([ 'id' => $access_ids ])->all();
+			if( $list ){
+				foreach( $list as $_item  ){
+					$tmp_urls = @json_decode(  $_item['urls'],true );
+					$privilege_urls = array_merge( $privilege_urls,$tmp_urls );
+				}
+			}
+		}
+		return $privilege_urls;
 	}
 
 

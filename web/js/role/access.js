@@ -1,9 +1,9 @@
 ;
 var role_access_set_ops = {
-    init:function(){//初始化方法
+    init: function () {//初始化方法
         this.eventBind();
     },
-    eventBind:function(){//事件绑定
+    eventBind: function () {//事件绑定
         $(".role_access_set_wrap .save").click( function(){
             var btn_target = $(this);
             if( btn_target.hasClass("disabled") ){
@@ -23,7 +23,7 @@ var role_access_set_ops = {
                 url:'/role/access',
                 type:'POST',
                 data:{
-                    id:$(".role_access_set_wrap input[name='id']").val(),
+                    id:$(".role_access_set_wrap input[name=id]").val(),
                     access_ids:access_ids
                 },
                 dataType:'json',
