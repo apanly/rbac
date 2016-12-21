@@ -55,7 +55,7 @@ AppAsset::register($this);
             <li>系统设置</li>
             <li><a href="<?=UrlService::buildUrl("/user/index");?>">用户管理</a></li>
             <li><a href="<?=UrlService::buildUrl("/role/index");?>">角色管理</a></li>
-            <li><a href="javascript:void(0);">权限管理</a></li>
+            <li><a href="<?=UrlService::buildUrl("/access/index");?>">权限管理</a></li>
         </ul>
     </div>
     <div class="col-sm-10 col-sm-offset-2 col-md-10  col-md-offset-2 col-lg-10 col-lg-offset-2 main">

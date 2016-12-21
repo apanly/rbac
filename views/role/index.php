@@ -25,8 +25,8 @@ use \app\services\UrlService;
                     <tr>
                         <td><?=$_item['name'];?></td>
                         <td>
-                            <a href="<?=UrlService::buildUrl("role/set",[ 'id' => $_item['id'] ]);?>">编辑</a>
-                            设置权限
+                            <a href="<?=UrlService::buildUrl("/role/set",[ 'id' => $_item['id'] ]);?>">编辑</a>
+                            <a href="<?=UrlService::buildUrl("/role/access",[ 'id' => $_item['id'] ]);?>">设置权限</a>
                         </td>
                     </tr>
                 <?php endforeach;?>

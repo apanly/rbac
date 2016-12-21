@@ -118,6 +118,8 @@ class UserController extends  BaseController{
 	}
 
 
+
+
 	//用户登录页面
 	public function actionLogin(){
 		return $this->render("login");
