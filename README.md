@@ -9,6 +9,9 @@ RBAC权限控制演示
 * Bootstrap
 * jQuery
 
+快速运行项目步骤
+================
+* git clone 
 
 文档
 ==========
