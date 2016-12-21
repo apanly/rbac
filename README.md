@@ -11,7 +11,18 @@ RBAC权限控制演示
 
 快速运行项目步骤
 ================
-* git clone 
+* git clone git@github.com:apanly/rbac.git  或者  git clone git@git.oschina.net:apanly/rbac.git (不能访问github的使用oschina)
+* 配置web server 请参考文档部分的 nginx 或者 apache
+* 数据库配置
+    * 新建数据库名 rbac
+    * 参考文档部分 数据库文件 将 里面的 sql 语句 全部执行
+    * [可选] 修改 config/db.php 文件 配置 username 和 password 为自己环境数据库用户名和密码
+* 配置一个本地域名
+    * 域名：rbac.yii.local.com
+    * 本机ip：127.0.0.1（特殊情况自己查ip）
+    * 绑定hosts   域名  ip
+* 浏览器 访问 http://rbac.yii.local.com/
+* 鼓掌
 
 文档
 ==========
