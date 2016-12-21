@@ -7,7 +7,7 @@ Nginx配置
         listen 80;
         server_name rbac.d.local.com;
    
-        root  /home/www/yii_tools/rbac/web;
+        root  /home/www/yii/rbac/web;
         index  index.php;
     
         location ~* \.(eot|otf|ttf|woff)$ {
