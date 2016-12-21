@@ -1,12 +1,12 @@
 Apache VirtualHost
 ======================
-担心大家不使用nginx，这里把apache 虚拟主机的配置也整理出来，像我这么负责的人不多了
+担心大家不使用nginx，这里把apache 虚拟主机的配置也整理出来，像我这么负责的人不多了：）
 
 方法一 
 =====================
 直接在apache 虚拟主机中配置rewrite规则
 
-    <VirtualHost *:8000>
+    <VirtualHost *:80>
         DocumentRoot /home/www/yii/rbac/web
         <Directory "/home/www/yii/rbac/web">
             RewriteEngine on
