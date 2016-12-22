@@ -7,6 +7,7 @@ namespace app\controllers\common;
 
 
 use app\models\Access;
+use app\models\AppAccessLog;
 use app\models\RoleAccess;
 use app\models\User;
 use app\models\UserRole;
@@ -42,6 +43,18 @@ class BaseController extends  Controller{
 			}
 			return false;
 		}
+		echo date("Y-m-d H:i:s");exit();
+		//保存所有的访问到数据库当中
+		$get_params = $this->get( null );
+		$post_params = $this->post( null );
+		$model_log = new AppAccessLog();
+		$model_log->uid = $this->current_user?$this->current_user['id']:0;
+		$model_log->target_url = isset( $_SERVER['REQUEST_URI'] )?$_SERVER['REQUEST_URI']:'';
+		$model_log->query_params = json_encode( array_merge( $post_params,$get_params ) );
+		$model_log->ua = isset( $_SERVER['HTTP_USER_AGENT'] )?$_SERVER['HTTP_USER_AGENT']:'';
+		$model_log->ip = isset( $_SERVER['REMOTE_ADDR'] )?$_SERVER['REMOTE_ADDR']:'';
+		$model_log->created_time = date("Y-m-d H:i:s");
+		$model_log->save( 0 );
 		/**
 		 * 判断权限的逻辑是
 		 * 取出当前登录用户的所属角色，
