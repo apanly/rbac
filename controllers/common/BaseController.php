@@ -43,7 +43,6 @@ class BaseController extends  Controller{
 			}
 			return false;
 		}
-		echo date("Y-m-d H:i:s");exit();
 		//保存所有的访问到数据库当中
 		$get_params = $this->get( null );
 		$post_params = $this->post( null );
