@@ -18,7 +18,7 @@ class UserController extends  BaseController{
 	public function actionIndex(){
 		//查询所有用户
 		$user_list = User::find()->where([ 'status' => 1 ])->orderBy([ 'id' => SORT_DESC ])->all();
-		//判断当前用户是否有访问添加或者编辑用户的权限
+		//判断当前用户时候有访问添加或编辑用户的权限
 		$set_flag = $this->checkPrivilege( "user/set" );
 		return $this->render('index',[
 			'list' => $user_list,

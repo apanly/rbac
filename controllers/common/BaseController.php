@@ -29,6 +29,8 @@ class BaseController extends  Controller{
 		'user/login'
 	];
 
+	public $privilege_urls = [];//保存去的权限链接
+
 	//本系统所有页面都是需要登录之后才能访问的，  在框架中加入统一验证方法
 	public function beforeAction($action) {
 		$login_status = $this->checkLoginStatus();
@@ -55,7 +57,7 @@ class BaseController extends  Controller{
 		return true;
 	}
 
-	//检验是否有权限
+	//检查是否有访问指定链接的权限
 	public function checkPrivilege( $url ){
 		//如果是超级管理员 也不需要权限判断
 		if( $this->current_user && $this->current_user['is_admin'] ){
@@ -67,7 +69,7 @@ class BaseController extends  Controller{
 			return true;
 		}
 
-		return in_array( $url, $this->getRolePrivilege() );
+		return in_array( $url, $this->getRolePrivilege( ) );
 	}
 
 	/*
@@ -80,22 +82,23 @@ class BaseController extends  Controller{
 		if( !$uid && $this->current_user ){
 			$uid = $this->current_user->id;
 		}
-		$privilege_urls = [];
-		//取出指定用户的所属角色
-		$role_ids = UserRole::find()->where([ 'uid' => $uid ])->select('role_id')->asArray()->column();
-		if( $role_ids ){
-			//在通过角色 取出 所属 权限关系
-			$access_ids = RoleAccess::find()->where([ 'role_id' =>  $role_ids ])->select('access_id')->asArray()->column();
-			//在权限表中取出所有的权限链接
-			$list = Access::find()->where([ 'id' => $access_ids ])->all();
-			if( $list ){
-				foreach( $list as $_item  ){
-					$tmp_urls = @json_decode(  $_item['urls'],true );
-					$privilege_urls = array_merge( $privilege_urls,$tmp_urls );
+
+		if( !$this->privilege_urls ){
+			$role_ids = UserRole::find()->where([ 'uid' => $uid ])->select('role_id')->asArray()->column();
+			if( $role_ids ){
+				//在通过角色 取出 所属 权限关系
+				$access_ids = RoleAccess::find()->where([ 'role_id' =>  $role_ids ])->select('access_id')->asArray()->column();
+				//在权限表中取出所有的权限链接
+				$list = Access::find()->where([ 'id' => $access_ids ])->all();
+				if( $list ){
+					foreach( $list as $_item  ){
+						$tmp_urls = @json_decode(  $_item['urls'],true );
+						$this->privilege_urls = array_merge( $this->privilege_urls,$tmp_urls );
+					}
 				}
 			}
 		}
-		return $privilege_urls;
+		return $this->privilege_urls ;
 	}
 
 
