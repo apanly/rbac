@@ -47,21 +47,27 @@ class BaseController extends  Controller{
 		 * 在权限表中取出所有的权限链接
 		 * 判断当前访问的链接 是否在 所拥有的权限列表中
 		 */
-		$privilege_urls = $this->getRolePrivilege(  );
-		//有一些页面是不需要进行权限判断的
-		if( in_array( $action->getUniqueId(),$this->ignore_url ) ){
-			return true;
-		}
-		//如果是超级管理员 也不需要权限判断
-		if( $this->current_user && $this->current_user['is_admin'] ){
-			return true;
-		}
 		//判断当前访问的链接 是否在 所拥有的权限列表中
-		if( !in_array( $action->getUniqueId(), $privilege_urls) ){
+		if( !$this->checkPrivilege( $action->getUniqueId() ) ){
 			$this->redirect( UrlService::buildUrl( "/error/forbidden" ) );
 			return false;
 		}
 		return true;
+	}
+
+	//检验是否有权限
+	public function checkPrivilege( $url ){
+		//如果是超级管理员 也不需要权限判断
+		if( $this->current_user && $this->current_user['is_admin'] ){
+			return true;
+		}
+
+		//有一些页面是不需要进行权限判断的
+		if( in_array( $url,$this->ignore_url ) ){
+			return true;
+		}
+
+		return in_array( $url, $this->getRolePrivilege() );
 	}
 
 	/*
