@@ -125,7 +125,9 @@ class UserController extends  BaseController{
 
 	//用户登录页面
 	public function actionLogin(){
-		return $this->render("login");
+		return $this->render("login",[
+			'host' => $_SERVER['HTTP_HOST']
+		]);
 	}
 
 	//伪登录业务方法,所以伪登录功能也是需要有auth_token
