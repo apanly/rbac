@@ -11,6 +11,10 @@ RBAC权限控制演示
 
 快速运行项目步骤（有疑问可以加入QQ交流群：325264502）
 ================
+* 下载地址
+    * Bootstrap：http://d.bootcss.com/bootstrap-3.3.0-dist.zip
+    * Yii2：http://github.com/yiisoft/yii2/releases/download/2.0.10/yii-basic-app-2.0.10.tgz
+    * jQuery：http://cdn.static.yunetidc.com/jquery/jquery.min.js
 * git clone git@github.com:apanly/rbac.git  或者  git clone git@git.oschina.net:apanly/rbac.git (不能访问github的使用oschina)
 * 配置web server 请参考文档部分的 nginx 或者 apache
 * 数据库配置
