@@ -5,7 +5,7 @@ Nginx配置
         charset utf-8;
         client_max_body_size 128M;
         listen 80;
-        server_name rbac.d.local.com;
+        server_name rbac.yii.local.com;
    
         root  /home/www/yii/rbac/web;
         index  index.php;
