@@ -7,6 +7,7 @@ Apache VirtualHost
 直接在apache 虚拟主机中配置rewrite规则
 
     <VirtualHost *:80>
+        ServerName rbac.yii.local.com
         DocumentRoot /home/www/yii/rbac/web
         <Directory "/home/www/yii/rbac/web">
             RewriteEngine on
@@ -21,6 +22,7 @@ Apache VirtualHost
 rewrite规则通过.htaccess文件实现
 
     <VirtualHost *:8000>
+        ServerName rbac.yii.local.com
         DocumentRoot /home/www/yii/rbac/web
     </VirtualHost>
     
