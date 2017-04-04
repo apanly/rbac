@@ -10,6 +10,8 @@ Apache VirtualHost
         ServerName rbac.yii.local.com
         DocumentRoot /home/www/yii/rbac/web
         <Directory "/home/www/yii/rbac/web">
+            Require all granted
+            Allow from all
             RewriteEngine on
             RewriteCond %{REQUEST_FILENAME} !-f
             RewriteCond %{REQUEST_FILENAME} !-d
