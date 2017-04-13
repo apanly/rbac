@@ -9,6 +9,10 @@ RBAC权限控制演示
 * Bootstrap
 * jQuery
 
+为热心同学点赞
+===============
+* [Python RBAC 看了视频同学自己实现的](https://github.com/gaoyaxing24/RBAC)
+
 快速运行项目步骤（有疑问可以加入QQ交流群：325264502）
 ================
 * 下载地址
