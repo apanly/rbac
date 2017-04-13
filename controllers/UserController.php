@@ -93,8 +93,8 @@ class UserController extends  BaseController{
 			$related_role_ids = [];
 			if( $user_role_list ){
 				foreach( $user_role_list as $_item ){
-					$related_role_ids[] = $_item['id'];
-					if( !in_array( $_item['id'],$role_ids ) ){
+					$related_role_ids[] = $_item['role_id'];
+					if( !in_array( $_item['role_id'],$role_ids ) ){
 						$_item->delete();
 					}
 				}
