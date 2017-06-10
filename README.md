@@ -42,4 +42,4 @@ RBAC权限控制演示
 
 支持一下呗
 ====================
-* ![微信公众号](./docs/images/imguowei_888.jpg)
+* ![微信公众号](http://cdn.static.54php.cn/images/weixin/coderonin.jpg?imageView/2/w/300)
